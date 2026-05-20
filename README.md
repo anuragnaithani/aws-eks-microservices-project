@@ -289,7 +289,7 @@ After completing this project I learned:
 ## Clone Repository
 
 ```bash
-git clone https://github.com/anuragnaithani/aws-eks-three-tier-robot-shop.git
+git clone https://github.com/anuragnaithani/aws-eks-microservices-project.git
 cd aws-eks-three-tier-robot-shop/EKS
 ```
 
