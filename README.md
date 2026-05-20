@@ -290,7 +290,7 @@ After completing this project I learned:
 
 ```bash
 git clone https://github.com/anuragnaithani/aws-eks-microservices-project.git
-cd aws-eks-three-tier-robot-shop/EKS
+cd aws-eks-microservices-project/EKS
 ```
 
 ---
