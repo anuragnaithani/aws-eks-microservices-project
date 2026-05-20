@@ -71,6 +71,192 @@ Components:
 - RabbitMQ
 
 ---
+# Why Amazon EKS?
+
+Amazon EKS (Elastic Kubernetes Service) is a managed Kubernetes service provided by AWS.
+
+It helps deploy, manage, and scale containerized applications without manually managing Kubernetes control plane components.
+
+Benefits of EKS:
+
+- Managed Kubernetes cluster
+- High availability
+- Automatic scaling support
+- AWS integration
+- Secure IAM authentication
+- Production-grade orchestration
+
+---
+
+# Why Kubernetes?
+
+Kubernetes is used to manage containerized microservices.
+
+In this project Kubernetes helps with:
+
+- Pod management
+- Auto-healing
+- Service discovery
+- Load balancing
+- Scaling
+- Rolling updates
+
+Each microservice runs inside its own Kubernetes pod.
+
+---
+
+# Why Helm?
+
+Helm is a package manager for Kubernetes.
+
+Instead of manually creating multiple YAML files, Helm helps deploy applications quickly using charts.
+
+In this project Helm was used to:
+
+- Deploy Robot Shop application
+- Manage Kubernetes resources
+- Simplify deployment process
+
+---
+
+# Why AWS Load Balancer Controller?
+
+AWS Load Balancer Controller automatically creates AWS Application Load Balancers for Kubernetes Ingress resources.
+
+Benefits:
+
+- Public access to application
+- Path-based routing
+- Integration with Kubernetes Ingress
+- Automatic ALB provisioning
+
+Without this controller, Kubernetes Ingress would not create AWS ALB automatically.
+
+---
+
+# Why EBS CSI Driver?
+
+EBS CSI Driver allows Kubernetes pods to use Amazon EBS volumes as persistent storage.
+
+This is important because databases need persistent data storage.
+
+Used for:
+
+- MongoDB storage
+- MySQL storage
+- Persistent volumes
+
+---
+
+# Microservices Communication
+
+All services communicate internally using Kubernetes services.
+
+Example:
+
+```text
+Web → Catalogue → MongoDB
+Web → User → Redis
+Web → Payment → RabbitMQ
+```
+
+Kubernetes DNS automatically handles service discovery.
+
+---
+
+# Networking Flow
+
+```text
+User Request
+     ↓
+AWS Application Load Balancer
+     ↓
+Ingress Controller
+     ↓
+Kubernetes Service
+     ↓
+Kubernetes Pod
+```
+
+This flow allows external users to securely access applications running inside Kubernetes.
+
+---
+
+# Kubernetes Resources Used
+
+| Resource | Purpose |
+|---|---|
+| Pod | Runs container |
+| Deployment | Manages replicas |
+| Service | Internal communication |
+| Ingress | External access |
+| Namespace | Resource isolation |
+| Persistent Volume | Storage |
+| ConfigMap | Configuration |
+| Secret | Sensitive data |
+
+---
+
+# Real-World DevOps Concepts Used
+
+This project demonstrates:
+
+- Container orchestration
+- Infrastructure automation
+- Cloud-native deployment
+- Kubernetes networking
+- Persistent storage
+- Ingress management
+- Microservices architecture
+- AWS cloud integration
+
+---
+
+# Challenges Faced During Deployment
+
+## 1. CloudFormation Rollback
+
+Initially cluster creation failed due to AWS service temporary errors.
+
+Solution:
+- Deleted failed stacks
+- Recreated cluster
+
+---
+
+## 2. ALB Controller IAM Issues
+
+IAM permissions were required for ALB Controller.
+
+Solution:
+- Created IAM OIDC provider
+- Attached IAM policies correctly
+
+---
+
+## 3. EBS CSI Driver Configuration
+
+Persistent storage setup required CSI driver integration.
+
+Solution:
+- Installed EBS CSI Driver addon
+- Configured IAM role
+
+---
+
+# Key Learning Outcomes
+
+After completing this project I learned:
+
+- Production-style EKS deployment
+- Kubernetes architecture
+- AWS networking basics
+- Helm deployment strategy
+- Kubernetes Ingress
+- Persistent storage management
+- Microservices deployment
+- Cloud cost cleanup practices
+---
 
 # AWS Services Used
 
